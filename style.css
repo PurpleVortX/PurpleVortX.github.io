@@ -26,3 +26,11 @@
   background-color: #04AA6D;
   color: white;
 }
+
+body {
+  background: #0d0d0d;
+  background: -webkit-linear-gradient(0deg, rgba(13, 13, 13, 1) 0%, rgba(110, 110, 110, 1) 100%);
+  background: -moz-linear-gradient(0deg, rgba(13, 13, 13, 1) 0%, rgba(110, 110, 110, 1) 100%);
+  background: linear-gradient(0deg, rgba(13, 13, 13, 1) 0%, rgba(110, 110, 110, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0D0D0D", endColorstr="#6E6E6E", GradientType=0);
+}

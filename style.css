@@ -7,9 +7,33 @@ body {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0D0D0D", endColorstr="#6E6E6E", GradientType=0);
 }
 
-h1, h2, h3, h4, h5, h6 {
+a {
+  color: white;
+  text-decoration: none;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, p {
   color: white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+hr {
+  width: 85%;
+}
+
+#purpletext {
+  font-size: 45px;
+  font-weight: bolder;
+}
+
+#desc{
+  color: #ddd;
+  font-style: italic;
+}
+
+p {
+  color: #ddd;
 }
 
 /* Style the links inside the navigation bar */
@@ -32,4 +56,8 @@ h1, h2, h3, h4, h5, h6 {
 .topnav a.active {
   color: white;
   font-weight: bolder;
+}
+
+.topnav {
+  filter: drop-shadow(5px 5px 5px #000);
 }

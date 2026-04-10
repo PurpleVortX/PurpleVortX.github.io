@@ -75,40 +75,47 @@ document.querySelectorAll("a").forEach(link => {
 });
 
 // Navbar system
+window.addEventListener("load", () => {
+  const indicator = document.querySelector(".nav-indicator");
+  const links = document.querySelectorAll(".topnav a");
 
-window.addEventListener("load" () => {
-  const indicator = document.querySelector(".nav-indicator");
-  const links = document.querySelectorAll(".topnav a");
+  if (!indicator || links.length === 0) return;
 
-  if (!indicator || links.length === 0) {
-    return
-  };
+  function normalize(path) {
+    return path.replace(/\/+$/, "");
+  }
 
-  function moveIndicator(el) {
-    const rect = el.getBoundingClientRect();
-    const parentRect = el.parentElement.getBoundingClientRect();
+  function moveIndicator(el) {
+    const rect = el.getBoundingClientRect();
+    const parentRect = el.parentElement.getBoundingClientRect();
 
-    indicator.style.width = rect.width + "px";
-    indicator.style.left = (rect.left - parentRect.left) + "px";
-  }
+    indicator.style.width = rect.width + "px";
+    indicator.style.left = (rect.left - parentRect.left) + "px";
+  }
 
-  const currentPath = normalize(window.location.pathname);
+  const currentPath = normalize(window.location.pathname);
 
-  let active = [...links].find(link => {
-    const linkPath = normalize(new URL(link.href).pathname);
-    return linkPath === currentPath;
-  });
+  let active = links[0]; // fallback ALWAYS
 
-  if (!active) active = links[0];
+  links.forEach(link => {
+    const href = link.getAttribute("href");
 
+    if (!href) return;
+
+    const linkPath = normalize(href);
+
+    if (linkPath === currentPath || linkPath === "") {
+      active = link;
+    }
+  });
+
+  moveIndicator(active);
+
+  links.forEach(link => {
+    link.addEventListener("mouseenter", () => moveIndicator(link));
+    link.addEventListener("click", () => moveIndicator(link));
+});
+
+document.querySelector(".topnav").addEventListener("mouseleave", () => {
   moveIndicator(active);
-
-  links.forEach(link => {
-    link.addEventListener("mouseenter", () => moveIndicator(link));
-    link.addEventListener("click" () => moveIndicator(link));
-  });
-
-  document.querySelector(".topnav").addEventListener("mouseleave" () => {
-    moveIndicator(active);
-  });
 });

@@ -1,6 +1,11 @@
 html, body {
   margin: 0;
   padding: 0;
+  min-height: 100%;
+}
+
+html {
+  background: linear-gradient(0deg, #0d0d0d 0%, #6e6e6e 100%);
 }
 
 body {
@@ -11,6 +16,12 @@ body {
   background: linear-gradient(0deg, rgba(13, 13, 13, 1) 0%, rgba(110, 110, 110, 1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0D0D0D", endColorstr="#6E6E6E", GradientType=0);
   background-repeat: no-repeat;
+}
+
+.topnav::after {
+  content: "";
+  display: block;
+  clear: both;
 }
 
 a {

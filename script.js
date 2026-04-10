@@ -46,7 +46,6 @@ fetch(`https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${C
     })
     .catch(err => console.error(err));
 
-
 // Fade IN on page load
 window.addEventListener("DOMContentLoaded", () => {
   document.body.classList.add("page-loaded");

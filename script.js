@@ -74,33 +74,41 @@ document.querySelectorAll("a").forEach(link => {
   });
 });
 
-const indicator = document.querySelector(".nav-indicator");
-const links = document.querySelectorAll(".topnav a");
+// Navbar system
 
-function moveIndicator(el) {
-  const rect = el.getBoundingClientRect();
-  const parentRect = el.parentElement.getBoundingClientRect();
+window.addEventListener("load" () => {
+  const indicator = document.querySelector(".nav-indicator");
+  const links = document.querySelectorAll(".topnav a");
 
-  indicator.style.width = rect.width + "px";
-  indicator.style.left = (rect.left - parentRect.left) + "px";
-}
+  if (!indicator || links.length === 0) {
+    return
+  };
 
-// Move on click
-links.forEach(link => {
-  link.addEventListener("click", () => {
-    moveIndicator(link);
-  });
-});
+  function moveIndicator(el) {
+    const rect = el.getBoundingClientRect();
+    const parentRect = el.parentElement.getBoundingClientRect();
 
-// Set position on page load (active page)
-window.addEventListener("DOMContentLoaded", () => {
-  const current = [...links].find(link =>
-    link.href === window.location.href
-  );
-
-  if (current) {
-    moveIndicator(current);
-  } else if (links[0]) {
-    moveIndicator(links[0]);
+    indicator.style.width = rect.width + "px";
+    indicator.style.left = (rect.left - parentRect.left) + "px";
   }
+
+  const currentPath = normalize(window.location.pathname);
+
+  let active = [...links].find(link => {
+    const linkPath = normalize(new URL(link.href).pathname);
+    return linkPath === currentPath;
+  });
+
+  if (!active) active = links[0];
+
+  moveIndicator(active);
+
+  links.forEach(link => {
+    link.addEventListener("mouseenter", () => moveIndicator(link));
+    link.addEventListener("click" () => moveIndicator(link));
+  });
+
+  document.querySelector(".topnav").addEventListener("mouseleave" () => {
+    moveIndicator(active);
+  });
 });

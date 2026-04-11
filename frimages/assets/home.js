@@ -1,13 +1,15 @@
-const feed = document.getElementById("feed");
+const API = "https://portal.purplevortx.com";
 
-// Fake social feed (replace with backend later)
-for (let i = 1; i <= 30; i++) {
-  const username = "user" + i;
+fetch(API + "/public-feed")
+    .then(res => res.json())
+    .then(data => {
+        const feed = document.getElementById("feed");
 
-  feed.innerHTML += `
-    <div class="image-card">
-      <img src="https://picsum.photos/400?random=${i}">
-      <div class="overlay-tag">@${username}</div>
-    </div>
-  `;
-}
+        data.forEach(img => {
+            feed.innerHTML += `
+        <div class="image-card">
+          <img src="${API}/image/${img.id}">
+        </div>
+      `;
+        });
+    });

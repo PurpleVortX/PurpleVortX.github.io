@@ -5,82 +5,127 @@
 
 body {
   margin: 0;
-  background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
-  color: #fff;
-}
-
-.container {
-  max-width: 1100px;
-  margin: auto;
-  padding: 20px;
-}
-
-.card {
-  background: #1f1f1f;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
-input, button {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  border-radius: 8px;
-  border: none;
-}
-
-input {
-  background: #2a2a2a;
+  background: #0d0d0d;
   color: white;
 }
 
-button {
-  background: #7c3aed;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-button:hover {
-  background: #6d28d9;
-}
-
+/* NAVBAR */
 .navbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
   padding: 15px 25px;
-  background: #121212;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(10px);
 }
 
-.navbar a {
-  color: white;
-  text-decoration: none;
+.logo {
+  font-weight: bold;
+  font-size: 1.3rem;
+  color: #7c3aed;
+}
+
+.nav-links a {
   margin-left: 15px;
+  text-decoration: none;
+  color: white;
 }
 
-.grid {
+/* BUTTONS */
+.btn {
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.btn.primary {
+  background: #7c3aed;
+}
+
+.btn.secondary {
+  background: #2a2a2a;
+}
+
+.btn.small {
+  padding: 6px 10px;
+}
+
+/* FEED */
+.feed {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+  padding: 15px;
 }
 
 .image-card {
   position: relative;
-  border-radius: 12px;
   overflow: hidden;
+  border-radius: 10px;
 }
 
 .image-card img {
   width: 100%;
+  height: 280px;
+  object-fit: cover;
   display: block;
+  transition: 0.2s;
 }
 
-.image-card .overlay {
+.image-card:hover img {
+  transform: scale(1.05);
+}
+
+/* USER TAG */
+.overlay-tag {
   position: absolute;
-  bottom: 0;
-  width: 100%;
-  padding: 10px;
+  bottom: 10px;
+  left: 10px;
+
   background: rgba(0,0,0,0.6);
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+/* LOCK OVERLAY */
+.overlay {
+  position: fixed;
+  inset: 0;
+
+  backdrop-filter: blur(8px);
+  background: rgba(0,0,0,0.6);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay-card {
+  background: #1a1a1a;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 320px;
+}
+
+.overlay-card h1 {
+  color: #7c3aed;
+  margin-bottom: 10px;
+  text-shadow: 0 0 15px rgba(124,58,237,0.4);
+}
+
+.overlay-card p {
+  opacity: 0.7;
+  margin-bottom: 20px;
+}
+
+.overlay-buttons a {
+  display: block;
+  margin-top: 10px;
 }
